@@ -2,9 +2,15 @@
 
 The Ubidots C# API Client makes calls to the [Ubidots API](http://ubidots.com/docs/api/index.html).
 
-## 1. How to build it
+## 1. How to use it
 
+### 1.1 Manual instalation
 Just open the solution in Visual Studio and build it. After that you will have the file _Ubidots.dll_ in your _/bin_ folder and you can add it as a reference to another project you are working on.
+
+### 1.2 Using NuGet
+You can use **NuGet** to install our library. Just search for _Ubidots_ and it will download our library and the dependencies it has.
+
+You can have more info here: https://www.nuget.org/packages/ubidots-csharp/1.0.0
 
 ## 2. Dependencies
 
@@ -24,7 +30,7 @@ Before you can start using all the stuff that Ubidots API provides, you must be 
 
 If you don't have an account yet, what are your waiting for?. Create one [here](http://app.ubidots.com/accounts/signup/).
 
-Once you have your API key, you can connect to the API by creating an ApiClient instance. After you have added Ubidots C# API Client as a reference in your solution (_see **2. Dependencies**_) you must tell your program to use the classes available in the Ubidots namespace:
+Once you have your API key, you can connect to the API by creating an ApiClient instance. After you have added Ubidots C# API Client as a reference in your solution (_see **1. How to use it**_) you must tell your program to use the classes available in the Ubidots namespace:
 
 ```csharp
 using Ubidots;
