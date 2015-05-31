@@ -163,6 +163,126 @@ namespace Ubidots
         }
 
         /// <summary>
+        /// Get the mean of the values
+        /// </summary>
+        /// <returns>The mean of the values</returns>
+        public double GetMean()
+        {
+            return GetMean(0L, GetTimestamp());
+        }
+
+        /// <summary>
+        /// Get the mean of the values in a given time
+        /// </summary>
+        /// <param name="StartTime">Initial time to evaluate the values</param>
+        /// <param name="EndTime">End time to evaluate the values</param>
+        /// <returns>The mean of the values</returns>
+        public double GetMean(long StartTime, long EndTime)
+        {
+            return GetStatistics(Value.StatisticFigures.MEAN, StartTime, EndTime);
+        }
+
+        /// <summary>
+        /// Get the variance of the values
+        /// </summary>
+        /// <returns>The variance of the values</returns>
+        public double GetVariance()
+        {
+            return GetVariance(0L, GetTimestamp());
+        }
+
+        /// <summary>
+        /// Get the variance of the values in a given time
+        /// </summary>
+        /// <param name="StartTime">Initial time to evaluate the values</param>
+        /// <param name="EndTime">End time to evaluate the values</param>
+        /// <returns>The variance of the values</returns>
+        public double GetVariance(long StartTime, long EndTime)
+        {
+            return GetStatistics(Value.StatisticFigures.VARIANCE, StartTime, EndTime);
+        }
+
+        /// <summary>
+        /// Get the minimum value among the values
+        /// </summary>
+        /// <returns>The minimum value among the values</returns>
+        public double GetMin()
+        {
+            return GetMin(0L, GetTimestamp());
+        }
+
+        /// <summary>
+        /// Get the minimum value among the values in a given time.
+        /// </summary>
+        /// <param name="StartTime">Initial time to evaluate the values</param>
+        /// <param name="EndTime">End time to evaluate the values</param>
+        /// <returns>The minimum value among the values</returns>
+        public double GetMin(long StartTime, long EndTime)
+        {
+            return GetStatistics(Value.StatisticFigures.MIN, StartTime, EndTime);
+        }
+
+        /// <summary>
+        /// Get the maximum value among the values
+        /// </summary>
+        /// <returns>The maximum value among the values</returns>
+        public double GetMax()
+        {
+            return GetMax(0L, GetTimestamp());
+        }
+
+        /// <summary>
+        /// Get the maximum value among the values in a given time.
+        /// </summary>
+        /// <param name="StartTime">Initial time to evaluate the values</param>
+        /// <param name="EndTime">End time to evaluate the values</param>
+        /// <returns>The maximum value among the values</returns>
+        public double GetMax(long StartTime, long EndTime)
+        {
+            return GetStatistics(Value.StatisticFigures.MAX, StartTime, EndTime);
+        }
+
+        /// <summary>
+        /// Get the count of the values
+        /// </summary>
+        /// <returns>The count of the values</returns>
+        public double GetCount()
+        {
+            return GetCount(0L, GetTimestamp());
+        }
+
+        /// <summary>
+        /// Get the count of the values in a given time
+        /// </summary>
+        /// <param name="StartTime">Initial time to evaluate the values</param>
+        /// <param name="EndTime">End time to evaluate the values</param>
+        /// <returns>The count of the values</returns>
+        public double GetCount(long StartTime, long EndTime)
+        {
+            return GetStatistics(Value.StatisticFigures.COUNT, StartTime, EndTime);
+        }
+
+        /// <summary>
+        /// Get the sum of the values
+        /// </summary>
+        /// <returns>The sum of the values</returns>
+        public double GetSum()
+        {
+            return GetSum(0L, GetTimestamp());
+        }
+
+        /// <summary>
+        /// Get the sum of the values in a given time
+        /// </summary>
+        /// <param name="StartTime">Initial time to evaluate the values</param>
+        /// <param name="EndTime">End time to evaluate the values</param>
+        /// <returns>The sum of the values</returns>
+        public double GetSum(long StartTime, long EndTime)
+        {
+            return GetStatistics(Value.StatisticFigures.SUM, StartTime, EndTime);
+        }
+
+        /// <summary>
         /// Get the timestamp in Unix time
         /// </summary>
         /// <returns>The current time taken from January 1 1970</returns>
@@ -171,6 +291,24 @@ namespace Ubidots
             DateTime Jan1st1970 = 
                 new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
+        }
+
+        /// <summary>
+        /// Method to get the response of the given figure
+        /// </summary>
+        /// <param name="Figure">The figure we want to get.</param>
+        /// <param name="StartTime">Initial time to get the statistics.</param>
+        /// <param name="EndTime">Final time to get the statistics.</param>
+        /// <returns>The response with the result from the server</returns>
+        private double GetStatistics(String Figure, long StartTime, long EndTime)
+        {
+            string Json = Bridge.Get("variables/" + GetId() + "/statistics/" +
+                Figure + "/" + StartTime + "/" + EndTime);
+
+            Dictionary<string, object> RawValues = 
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(Json);
+
+            return (double)RawValues[Figure];
         }
     }
 }
