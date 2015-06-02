@@ -126,3 +126,23 @@ long[] Timestamps = new long[5] {1380558972614l, 1380558972915l,
 
 NewVariable.SaveValues(Values, Timestamps);
 ```
+
+### 3.9 Using statistics endpoint
+
+You can use the Ubidots statistics endpoint by calling the specific method:
+
+* _getMean()_
+* _getVariance()_
+* _getMin()_
+* _getMax()_
+* _getCount()_
+* _getSum()_
+
+This methods are present in your Variable instance.
+
+Usage sample:
+
+```csharp
+Variable MySpecificVariable = Api.GetVariable("56799cf1231b28459f976417");
+Double Mean = MySpecificVariable.getMean();
+```
