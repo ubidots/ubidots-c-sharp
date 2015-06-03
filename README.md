@@ -4,13 +4,13 @@ The Ubidots C# API Client makes calls to the [Ubidots API](http://ubidots.com/do
 
 ## 1. How to use it
 
-### 1.1 Manual instalation
+### 1.1 Manual Installation
 Just open the solution in Visual Studio and build it. After that you will have the file _Ubidots.dll_ in your _/bin_ folder and you can add it as a reference to another project you are working on.
 
 ### 1.2 Using NuGet
-You can use **NuGet** to install our library. Just search for _Ubidots_ and it will download our library and the dependencies it has.
+You can use **NuGet** to install our library. Just search for _Ubidots_ and it will download our library and the required dependencies.
 
-You can have more info here: https://www.nuget.org/packages/ubidots-csharp/1.0.0
+You can see more info here: https://www.nuget.org/packages/ubidots-csharp/1.0.0
 
 ## 2. Dependencies
 
@@ -26,9 +26,9 @@ To download the latest version _at the time of writing_ this library, you can fo
 
 ### 3.1 Connecting to the API
 
-Before you can start using all the stuff that Ubidots API provides, you must be able to connect to it using your API key. This API Key can be found in [your profile](https://app.ubidots.com/userdata/api/).
+Before you can start using all the stuff that Ubidots API provides, you should open an account and grab your API key. This API Key can be found in [your profile](https://app.ubidots.com/userdata/api/).
 
-If you don't have an account yet, what are your waiting for?. Create one [here](http://app.ubidots.com/accounts/signup/).
+If you don't have an account yet, create one [here](http://app.ubidots.com/accounts/signup/)!
 
 Once you have your API key, you can connect to the API by creating an ApiClient instance. After you have added Ubidots C# API Client as a reference in your solution (_see **1. How to use it**_) you must tell your program to use the classes available in the Ubidots namespace:
 
@@ -48,13 +48,13 @@ Now you have an instance of the ApiClient class in the variable **Api** which ca
 
 As you may know a DataSource represents a device or a virtual source.
 
-You can access to the information of a single DataSource with the method GetDataSource() that receives a string with your DataSource ID as a parameter. Let's asume we have a DataSource with an ID: _"0AkKNyF6VUiHAwP7obgC"_.
+You can access the information of a single DataSource with the method GetDataSource() which receives a string with your DataSource ID as a parameter. Let's asume we have a DataSource with an ID: _"0AkKNyF6VUiHAwP7obgC"_.
 
 ```csharp
 DataSource ExampleDataSource = Api.GetDataSource("0AkKNyF6VUiHAwP7obgC");
 ```
 
-If we want to bring a list of all the DataSources we have created in our accoount we can call the method GetDataSources():
+If we want to bring a list of all the DataSources in our accoount we can call the method GetDataSources():
 
 ```csharp
 DataSource[] ExampleDataSources = Api.GetDataSources();
@@ -62,7 +62,7 @@ DataSource[] ExampleDataSources = Api.GetDataSources();
 
 ### 3.3 Creating a DataSource
 
-In the case that we wanted to create a new DataSource in our account we just have to call the method CreateDataSource() that receives a string containing the name of the DataSource.
+In the case where you want to create a new DataSource in your account, you just have to call the method CreateDataSource(), which receives a string containing the name of the DataSource.
 
 ```csharp
 DataSource NewDataSource = Api.CreateDataSource("ExampleDataSource");
@@ -72,16 +72,16 @@ DataSource NewDataSource = Api.CreateDataSource("ExampleDataSource");
 
 A Variable contains different values over time, you can have multiple Variables in a DataSource.
 
-If you want to access to a variable using its ID, you can call the method GetVariable() that receives a string containing the ID of the Variable. Let's asume we have a Variable with an ID: _"hp7ikZQCTf3bjnjjcQo9"_.
+If you want to access a variable using its ID, you can call the method GetVariable() which receives a string containing the ID of the Variable. Let's asume we have a Variable with the ID: _"hp7ikZQCTf3bjnjjcQo9"_.
 
 ```csharp
 Variable ExampleVariable = Api.GetVariable("hp7ikZQCTf3bjnjjcQo9");
 ```
 
-If you want to get the list of all variables there are two ways we can do that:
+If you want to get the list of all variables there are two ways to do it:
 
-1. By using the method GetVariables() of the ApiClient class that will return a list with all the Variables in our account.
-2. By using the method GetVariables() of the DataSource class that will return a list with all the Variables of the DataSource.
+1. By using the method GetVariables() of the ApiClient class, which will return a list with all the Variables in your account.
+2. By using the method GetVariables() of the DataSource class, which will return a list with all the Variables of the DataSource.
 
 ```csharp
 // Using ApiClient class
@@ -93,7 +93,7 @@ Variable[] ExampleVariablesDataSource = NewDataSource.GetVariables();
 
 ### 3.5 Creating a Variable
 
-If you want to create a Variable, you have to call the method CreateVariable() of the DataSource class, that receives a string containing the name of the new Variable.
+If you want to create a Variable, you can call the method CreateVariable() of the DataSource class, which receives a string containing the name of the new Variable.
 
 ```csharp
 Variable NewVariable = NewDataSource.CreateVariable("NewExampleVariable");
@@ -140,7 +140,7 @@ You can use the Ubidots statistics endpoint by calling the specific method:
 
 This methods are present in your Variable instance.
 
-Usage sample:
+Usage example:
 
 ```csharp
 Variable MySpecificVariable = Api.GetVariable("56799cf1231b28459f976417");
