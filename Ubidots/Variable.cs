@@ -44,7 +44,7 @@ namespace Ubidots
         /// <returns>The list of all the values of the variable</returns>
         public Value[] GetValues()
         {
-            string Json = Bridge.Get("variable/" + GetId() + "/values");
+            string Json = Bridge.Get("variables/" + GetId() + "/values");
 
             List<Dictionary<string, object>> RawValues = 
                 JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Json);

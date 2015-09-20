@@ -8,14 +8,14 @@ namespace Ubidots
 {
     public class Value : ApiObject
     {
-        public interface StatisticFigures
+        public class StatisticFigures
         {
-            public static const string MEAN = "mean";
-            public static const string VARIANCE = "variance";
-            public static const string MIN = "min";
-            public static const string MAX = "max";
-            public static const string COUNT = "count";
-            public static const string SUM = "sum";
+            public const string MEAN = "mean";
+            public const string VARIANCE = "variance";
+            public const string MIN = "min";
+            public const string MAX = "max";
+            public const string COUNT = "count";
+            public const string SUM = "sum";
         }
 
         public Value(Dictionary<string, object> Raw, ApiClient Api) : base(Raw, Api) {}
